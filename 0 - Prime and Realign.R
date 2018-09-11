@@ -1,3 +1,4 @@
+#one of the first scripts I wrote for my MSc
 require(compiler)
 enableJIT(3)
 
@@ -254,8 +255,6 @@ charVectorReverse <- function(df){
     return(as.vector(c(t(tb[1,]))))
   }
 }
-
-#need to fix an error with fromTrim... this will work with set commands though
 trimPrimeAndRealignSeq <- function(df, cols=NA, Length=30, Trim_Len=31, Len_Adjust=32, lmin=1, trimRounds=1, reorder=T, fromTrim=T, setRounds=F) {
   # Removes and tracks possible sequences added via the prime and realign mechanism
   #   "G","GC","GCA","GCAA", "GCAAA", "GCAAAA", "GCG", "GCGA", "GCGAA", "GCGAAA"
@@ -346,8 +345,8 @@ trimPrimeAndRealignSeq <- function(df, cols=NA, Length=30, Trim_Len=31, Len_Adju
   }
 }
 
-
-setwd("C:/Users/HardCor/Desktop/IAV Data")
+#you can set your working directory here if not using default
+#setwd()
 HK <- read.csv(file="C:/Users/HardCor/Desktop/IAV Data/seqNh-HK-NhL9_bigTable_allRounds-norc.csv", header=TRUE, sep="\t", stringsAsFactors=FALSE)	#HK
 BR <- read.csv(file="C:/Users/HardCor/Desktop/IAV Data/seqNh_Brisbane-NhL9_bigTable_allRounds-norc.csv", header=TRUE, sep="\t", stringsAsFactors=FALSE)	#Brisbane
 PR <- read.csv(file="C:/Users/HardCor/Desktop/IAV Data/seqNh-PR8-NhL9_bigTable_allRounds-norc.csv", header=TRUE, sep="\t", stringsAsFactors=FALSE)	#PR8
@@ -385,7 +384,8 @@ BR <- trimPrimeAndRealignSeq(BR, cols=NA, Length=grep("Length",colnames(BR)), Tr
 PR <- trimPrimeAndRealignSeq(PR, cols=NA, Length=grep("Length",colnames(PR)), Trim_Len=grep("Trim_Len",colnames(PR)), Len_Adjust=grep("Len_Adjust",colnames(PR)), lmin=lmin, reorder=T, fromTrim=T, setRounds=T)
 WSN <- trimPrimeAndRealignSeq(WSN, cols=NA, Length=grep("Length",colnames(WSN)), Trim_Len=grep("Trim_Len",colnames(WSN)), Len_Adjust=grep("Len_Adjust",colnames(WSN)), lmin=lmin, reorder=T, fromTrim=T, setRounds=T)
 
-setwd("C:/Users/HardCor/Desktop/IAV Data/Match_Seq")
+#change saving directory here if you want to
+#setwd("")
 write.csv(file="HK_All_Match.csv", HK, row.names=FALSE)
 write.csv(file="BRI_All_Match.csv", BR, row.names=FALSE)
 write.csv(file="PR8_All_Match.csv", PR, row.names=FALSE)
